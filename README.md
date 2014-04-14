@@ -1,4 +1,4 @@
-Goodreader
+Bestreads
 ================
 
 A Goodreads API wrapper in Node.js
