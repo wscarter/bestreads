@@ -1,0 +1,24 @@
+{
+	"name" : "bestreads",
+	"version" : "0.1.0",
+	"author" : "Wes Carter <https://github.com/paperziggurat>",
+	"description" : "A Goodreads API wrapper in Node.js",
+	"main" : "goodreads.js",
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/paperziggurat/bestreads.git",
+	},
+	"keywords" : [
+		"goodreads",
+		"api",
+		"wrapper"
+	],
+	"dependencies" : {
+		"request" : "2.34.0",
+		"xml2js" : "0.4.2"
+	}
+	"license" : "MIT",
+	"engines" : {
+		"node" : ">=0.10.26"
+	}
+}
