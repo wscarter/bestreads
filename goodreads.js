@@ -1,5 +1,6 @@
 var req = require('request');
 var xml2js = require('xml2js');
+var extend = require('extend');
 
 function Goodreads(dev, sec) {
 	this.keys = {
@@ -8,37 +9,51 @@ function Goodreads(dev, sec) {
 	}
 };
 
-Goodreads.prototype.isbnToId = function(isbn) {
+Goodreads.prototype.isbnToId = function(isbn, etc) {
 	options = {
 		url : 'https://www.goodreads.com/book/isbn_to_id',
 		form : {
-			'isbn' : isbn,
-			'key' : this.keys.developer
+			'key' : this.keys.developer,
+			'isbn' : isbn
 		}
 	}
+	mergeObj(options.form, etc);
 	req.get(options, function(err, response, body) {
 		console.log(body);
 		return body;
 	});
 };
 
-Goodreads.prototype.getReviewsById = function(id, rating) { //Returns JSON by default
+Goodreads.prototype.getReviewsById = function(id, etc) { //Returns JSON by default
 	options = {
-		url : 'https://www.goodreads.com/book/show?format=json',
+		url : 'https://www.goodreads.com/book/show?format=FORMAT',
 		form : {
-			'key' : this.keys.developer,
-			'id' : id,
+			key : this.keys.developer,
+			id : id
 		}
 	}
+	mergeObj(options.form, etc);
 	req.get(options, function(err, response, body) {
-		console.log(body);
+		console.log(response);
 	});
 }
+
+function mergeObj(obj1, obj2) {
+	objfinal = {};
+	for (key in obj1) {
+		objfinal[key] = obj1[key];
+	}
+	for (key in obj2) {
+		objfinal[key] = obj2[key];
+	}
+	return objfinal;
+}
+
 
 var gr = new Goodreads('aKhHwxhzgl97agrN7QPymQ', 'LpOpmlzw6ZukPIOqex0jhTVTkA7twNjqNdbBAzeEk');
 
 gr.isbnToId('9788478888566');
-gr.getReviewsById('167037');
+gr.getReviewsById('167037', {rating: 5, text_only: false, format: 'json'});
 
 
 
