@@ -50,7 +50,7 @@ function mergeObj(obj1, obj2) {
 }
 
 
-var gr = new Goodreads('aKhHwxhzgl97agrN7QPymQ', 'LpOpmlzw6ZukPIOqex0jhTVTkA7twNjqNdbBAzeEk');
+var gr = new Goodreads('', '');
 
 gr.isbnToId('9788478888566');
 gr.getReviewsById('167037', {rating: 5, text_only: false, format: 'json'});
